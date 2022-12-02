@@ -72,16 +72,4 @@ RSpec.configure do |config|
 
   # Include html matchers
   config.include RSpecHtmlMatchers
-
-  #### Pubsub
-  config.before(:each) do
-    # disable delivering notifications to pubsub
-    allow(PubSubModelSync::MessagePublisher).to receive(:connector_publish)
-    # disable all models sync by default (reduces testing time by avoiding to build payload data)
-    allow(PubSubModelSync::MessagePublisher).to receive(:publish_model)
-  end
-  # enable all models sync only for tests that includes 'sync: true'
-  config.before(:each, sync: true) do
-    allow(PubSubModelSync::MessagePublisher).to receive(:publish_model).and_call_original
-  end
 end

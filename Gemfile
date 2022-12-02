@@ -54,6 +54,7 @@ gem 'bootsnap', require: false
 gem 'haml-rails', '~> 2.0'
 
 group :development, :test do
+  gem 'annotate'
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'debug', platforms: %i[mri mingw x64_mingw]
   gem 'rubocop-rails', require: false

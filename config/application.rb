@@ -33,9 +33,9 @@ module MyApp
 
     # I18n configurations
     config.time_zone = 'Europe/Berlin'
-    config.i18n.available_locales = %i[de en pl]
+    config.i18n.available_locales = %i[en]
     config.i18n.load_path += Dir[Rails.root.join('config/locales/**/*.{rb,yml}')]
-    config.i18n.default_locale = :de
+    config.i18n.default_locale = :en
 
     # config.eager_load_paths << Rails.root.join("extras")
 

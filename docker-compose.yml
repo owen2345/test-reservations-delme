@@ -19,16 +19,6 @@ services:
       POSTGRES_USER: ${POSTGRES_USER:-root}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-password}
 
-  pubsub:
-    image: rabbitmq:3-management-alpine
-    volumes:
-      - pubsub-data:/var/lib/rabbitmq/
-      - pubsub-data:/var/log/rabbitmq/
-      - pubsub-data:/etc/rabbitmq/
-    ports:
-      - 5672:5672
-      - 15672:15672
-
   app: &app
     tty: true
     build:
@@ -43,23 +33,17 @@ services:
     depends_on:
       - postgres
       - redis
-      - pubsub
     ports:
     - 3000:3000
-    - 3036:3036 # vitejs
 
   test:
     <<: *app
     command: sh -c 'bundle exec rspec'
     environment:
       RAILS_ENV: test
-    ports:
-    - 3030:3030
-    - 3037:3037 # vitejs
 
 volumes:
   bundler_gems:
   postgres_data:
   redis_data:
-  pubsub-data:
   node_modules:
