@@ -1,7 +1,0 @@
-- flash.each do |msg_type, message|
-  - if msg_type.to_sym == :error
-    .bg-danger{ data: { controller: 'toast' } }= message
-  - elsif msg_type.to_sym == :info
-    .bg-info{ data: { controller: 'toast' } }= message
-  - else
-    .bg-success{ data: { controller: 'toast' } }= message
