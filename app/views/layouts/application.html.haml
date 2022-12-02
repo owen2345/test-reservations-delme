@@ -1,0 +1,24 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title MyApp
+    %meta{:content => "width=device-width,initial-scale=1", :name => "viewport"}/
+    = csrf_meta_tags
+    = csp_meta_tag
+    = javascript_include_tag 'application'
+    = stylesheet_link_tag 'application'
+
+  %body
+    #header
+      = render '/layouts/navigation'
+      #main-progress-bar.progress.fixed-top.invisible
+        .progress-bar.progress-bar-striped.progress-bar-animated{role: "progressbar", style: "width: 100%"}
+      #toasts.toast-container.position-absolute.p-3.bottom-0.end-0{ style: 'z-index: 999' }
+        = render '/layouts/flash_messages'
+
+    #container.container
+      = yield
+
+
+    = render '/rails_hotreload/stream', custom_style: 'left: 20px; bottom: 20px;'  if Rails.env.development?

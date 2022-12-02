@@ -1,0 +1,23 @@
+%nav.navbar.navbar-expand-lg.navbar-dark.bg-primary
+  .container
+    #navbarColor02.collapse.navbar-collapse
+      %ul.navbar-nav.me-auto.mb-2.mb-lg-0
+        %li.nav-item
+          %a.nav-link{href: '/'} Home
+
+      %form.d-flex.me-2
+        .input-group
+          %input.form-control{"aria-label" => "Search", :placeholder => "Search", :type => "search"}/
+          %button.btn.btn-light{:type => "submit"}
+            %i.fas.fa-search
+
+      %ul.navbar-nav
+        %li.nav-item.dropdown
+          %a.nav-link.dropdown-toggle{"data-bs-toggle" => "dropdown", role: "button"}= I18n.locale.to_s.upcase
+          %ul.dropdown-menu
+            - I18n.available_locales.each do |locale|
+              %li= link_to locale.upcase, url_for(locale: locale, params: request.query_parameters.except(:locale)), class: 'dropdown-item'
+
+        %li.nav-item
+          = link_to auth_logout_path, class: 'nav-link' do
+            %i.fas.fa-sign-out-alt

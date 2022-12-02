@@ -1,0 +1,20 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title MyApp
+    %meta{:content => "width=device-width,initial-scale=1", :name => "viewport"}/
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag 'application'
+
+  %body
+    .text-center.position-absolute.top-50.start-50.translate-middle
+      %img{ src: '/buddyandselly_logo.jpg', style: 'max-width: 16em; margin: -2rem 0;' }
+      %h1{ style: 'color: #16D0AF;' } Photobuddy
+      = button_to t('.login'), '/auth/auth0', method: :post, class: 'btn btn-primary', form: { 'data-turbo' => false }
+
+    .position-fixed.top-0.start-0
+      - I18n.available_locales.each do |locale|
+        = link_to locale.upcase, url_for(locale: locale, params: request.query_parameters.except(:locale)),
+                  class: "badge rounded-pill bg-primary #{ 'bg-dark' if I18n.locale == locale}"
