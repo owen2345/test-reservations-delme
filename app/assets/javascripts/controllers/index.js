@@ -3,3 +3,9 @@
 // ./bin/rails generate stimulus controllerName
 
 import application from './application';
+
+import ConfirmController from './confirm_controller';
+import ToastController from './toast_controller';
+
+application.register('confirm', ConfirmController);
+application.register('toast', ToastController);
