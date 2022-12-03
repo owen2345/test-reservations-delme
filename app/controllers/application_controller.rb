@@ -2,6 +2,7 @@
 
 class ApplicationController < ActionController::Base
   include ApplicationHelper
+  include TurboConcern
   layout :resolve_layout
 
   private
