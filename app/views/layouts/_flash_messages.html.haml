@@ -1,0 +1,7 @@
+- flash.each do |msg_type, message|
+  - if msg_type.to_sym == :error || msg_type.to_sym == :alert
+    .p-1.alert.bg-danger{ data: { controller: 'toast' } }= message
+  - elsif msg_type.to_sym == :info
+    .p-1.alert.bg-info{ data: { controller: 'toast' } }= message
+  - else
+    .p-1.alert.bg-success{ data: { controller: 'toast' } }= message

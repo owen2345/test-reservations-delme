@@ -12,13 +12,10 @@
   %body
     #header
       = render '/layouts/navigation'
-      #main-progress-bar.progress.fixed-top.invisible
-        .progress-bar.progress-bar-striped.progress-bar-animated{role: "progressbar", style: "width: 100%"}
-      #toasts.toast-container.position-absolute.p-3.bottom-0.end-0{ style: 'z-index: 999' }
-        = render '/layouts/flash_messages'
+      #flash_messages.position-fixed.p-3.top-0.end-0{ style: 'z-index: 99999' }= render '/layouts/flash_messages'
 
     #container.container
       = yield
 
-
+    = turbo_frame_tag :turbo_frame_none
     = render '/rails_hotreload/stream', custom_style: 'left: 20px; bottom: 20px;'  if Rails.env.development?

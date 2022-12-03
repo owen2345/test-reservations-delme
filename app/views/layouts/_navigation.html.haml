@@ -1,0 +1,15 @@
+%nav.navbar.navbar-expand-lg.navbar-dark.bg-primary
+  .container
+    #navbarColor02.collapse.navbar-collapse
+      .navbar-nav.me-auto.mb-2.mb-lg-0
+        = link_to 'TradeLink', '/', class: 'navbar-brand mb-0', style: 'font-weight: 300'
+
+      %ul.navbar-nav
+        %li.nav-item
+          = link_to new_reservation_path, class: 'btn btn-primary' do
+            %i.fa.fa-plus
+            Reserve
+        %li.nav-item
+          = link_to reservations_path, class: 'btn btn-primary' do
+            %i.fa.fa-list-alt
+            Reservations
