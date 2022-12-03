@@ -1,0 +1,10 @@
+.mt-3
+  %h3 Available slots
+  %table.table.table-striped
+    - @slots.each do |start_at, _end_at|
+      %tr
+        %td= start_at.strftime('%R')
+        %td.text-end
+          = button_to 'Reserve', url_for(action: :create, start_at:, duration: params[:duration]),
+            method: :post, class: 'btn btn-primary btn-sm', form: { class: 'd-inline' },
+            data: { confirm: "Are you sure you want reserve this slot #{start_at.to_formatted_s(:short)}?", controller: 'confirm' }

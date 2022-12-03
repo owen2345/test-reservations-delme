@@ -1,0 +1,15 @@
+.row
+  .col-8.offset-2
+    %h2 New reservation
+    = form_tag url_for(action: :free_slots), 'data-turbo-frame': 'free_slots' do
+      .row.align-items-end.gx-0
+        .col-4
+          = label_tag :date
+          = date_field_tag :date, Date.today, class: 'form-control', required: true
+        .col-4
+          = label_tag :duration
+          = number_field_tag :duration, 30, class: 'form-control', required: true
+        .col
+          = button_tag 'Filter free slots', class: 'btn btn-primary'
+
+    = turbo_frame_tag 'free_slots', target: "_top"
