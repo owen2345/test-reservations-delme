@@ -1,0 +1,9 @@
+-# locals: { item: ReservedSlot }
+
+%tr
+  %td= item.start_at.to_formatted_s(:short)
+  %td= item.end_at.to_formatted_s(:short)
+  %td= item.created_at.to_formatted_s(:short)
+  %td
+    = button_to url_for(action: :destroy, id: item), method: :delete, class: 'btn btn-danger btn-sm btn-delete', form: { class: 'd-inline' }, data: { confirm: 'Are you sure?', controller: 'confirm' } do
+      %i.fa.fa-trash

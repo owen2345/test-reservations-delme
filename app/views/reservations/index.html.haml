@@ -1,0 +1,13 @@
+#reservations_page
+  %h2 Reservations
+
+  %table.table.table-striped
+    %thead
+      %tr
+        %td Date From
+        %td Date To
+        %td Created at
+        %td
+    %tbody
+      - @reservations.each do |item|
+        = render 'index_item', item: item

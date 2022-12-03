@@ -5,4 +5,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root 'dashboard#index'
+  resources :reservations, except: :update do
+    post :free_slots, on: :collection
+  end
 end
