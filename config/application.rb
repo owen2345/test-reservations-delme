@@ -14,6 +14,8 @@ require 'action_mailbox/engine'
 require 'action_text/engine'
 require 'action_view/railtie'
 require 'action_cable/engine'
+
+require './lib/ext/time'
 # require "rails/test_unit/railtie"
 
 # Require the gems listed in Gemfile, including any gems
@@ -32,7 +34,7 @@ module MyApp
     #
 
     # I18n configurations
-    config.time_zone = 'Europe/Berlin'
+    config.time_zone = 'America/La_Paz'
     config.i18n.available_locales = %i[en]
     config.i18n.load_path += Dir[Rails.root.join('config/locales/**/*.{rb,yml}')]
     config.i18n.default_locale = :en
