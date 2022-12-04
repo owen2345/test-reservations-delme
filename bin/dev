@@ -6,4 +6,6 @@ then
   gem install foreman
 fi
 
+echo "Checking database..."
+rake db:migrate:status 2>/dev/null && rails db:migrate || (rails db:setup && rails db:seed)
 foreman start -f Procfile.dev
