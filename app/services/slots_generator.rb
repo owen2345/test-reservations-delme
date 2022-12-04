@@ -17,8 +17,8 @@ class SlotsGenerator < ApplicationService
   private
 
   def calculate_available_slots
-    time_from = date.to_time.change(hour: 8, min: 0, sec: 0)
-    time_to = date.to_time.change(hour: 18, min: 0, sec: 0)
+    time_from = date.to_time.change(hour: 8, min: 0, sec: 0).in_current_zone
+    time_to = date.to_time.change(hour: 18, min: 0, sec: 0).in_current_zone
     slots = day_slots(time_from, time_to)
     free_slots = exclude_busy_slots(slots)
     exclude_insufficient_slots(free_slots)
