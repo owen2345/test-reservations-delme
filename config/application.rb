@@ -35,6 +35,8 @@ module MyApp
 
     # I18n configurations
     config.time_zone = 'America/La_Paz'
+    config.active_record.default_timezone = :local
+
     config.i18n.available_locales = %i[en]
     config.i18n.load_path += Dir[Rails.root.join('config/locales/**/*.{rb,yml}')]
     config.i18n.default_locale = :en
