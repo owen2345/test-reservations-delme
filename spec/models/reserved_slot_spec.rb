@@ -40,4 +40,14 @@ describe ReservedSlot, type: :model do
       expect(res).to be_truthy
     end
   end
+
+  describe 'callbacks' do
+    describe 'once destroyed' do
+      xit 'broadcasts free-slots event for the reservation day'
+    end
+
+    describe 'once created' do
+      xit 'broadcasts free-slots event for the reservation day'
+    end
+  end
 end

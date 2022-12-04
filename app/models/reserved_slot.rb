@@ -24,6 +24,9 @@ class ReservedSlot < ApplicationRecord
   validate :check_availability, on: :create, if: %i[start_at end_at]
   validate :validate_range, on: :create, if: %i[start_at end_at]
 
+  # callbacks
+  after_commit :broadcast_free_slots, on: %i[create destroy]
+
   # scopes
   scope :in_date, ->(date) { where('start_at::DATE = ?', date) }
   scope :in_range, lambda { |start_at, end_at|
@@ -39,5 +42,9 @@ class ReservedSlot < ApplicationRecord
   def check_availability
     taken = ReservedSlot.in_range(start_at + 1.minute, end_at).any?
     errors.add(:start_at, :busy, message: 'The slot range is already busy') if taken
+  end
+
+  def broadcast_free_slots
+    ActionCable.server.broadcast("changed_free_slots_#{start_at.to_date}", { start_at: })
   end
 end
