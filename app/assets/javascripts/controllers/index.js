@@ -6,6 +6,8 @@ import application from './application';
 
 import ConfirmController from './confirm_controller';
 import ToastController from './toast_controller';
+import FreeSlotsController from './free_slots_controller';
 
 application.register('confirm', ConfirmController);
 application.register('toast', ToastController);
+application.register('free_slots', FreeSlotsController);
