@@ -8,7 +8,7 @@ class ReservationsController < ApplicationController
   end
 
   def create
-    @reservation = ReservedSlot.new(start_at: Time.parse(params[:start_at]).in_current_zone)
+    @reservation = ReservedSlot.new(start_at: params[:start_at])
     @reservation.end_at = @reservation.start_at + params[:duration].to_i.minutes
     if @reservation.save
       flash[:notice] = 'Reservation successfully created'
@@ -22,7 +22,7 @@ class ReservationsController < ApplicationController
   def free_slots
     @slots = SlotsGenerator.call(Date.parse(params[:date]), params[:duration].to_i)
     @reservation = ReservedSlot.new
-    render_turbo_content { render }
+    render_turbo_content(skip_flash: true) { render }
   end
 
   def destroy
