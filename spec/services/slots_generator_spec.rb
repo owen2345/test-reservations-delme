@@ -5,7 +5,8 @@ describe SlotsGenerator, type: :service do
   let(:date) { Time.current.to_date }
   let(:slot_interval) { 15 }
   let(:duration) { 30 }
-  let(:total_day_slots) { (1.hour / slot_interval.minutes) * 24 }
+  let(:hours_day) { 10 }
+  let(:total_day_slots) { ((1.hour / slot_interval.minutes) * hours_day) - 1 }
   let(:inst) { described_class.new(date, duration) }
   before do
     stub_const('ReservedSlot::SLOT_INTERVAL', slot_interval)
@@ -47,14 +48,14 @@ describe SlotsGenerator, type: :service do
       expect(inst.call.count).to eq(total_day_slots)
     end
 
-    it 'starts at 00:00' do
+    it 'starts at 08:00' do
       first_slot = inst.call.first
-      expect(first_slot[0]).to eq(Time.zone.parse('00:00'))
+      expect(first_slot[0]).to eq(Time.zone.parse('08:00'))
     end
 
-    it 'ends at 23:45' do
+    it 'ends at 18:00, but the last slot that supports 30mins is 17:30' do
       last_slot = inst.call.last
-      expect(last_slot[0]).to eq(Time.zone.parse('23:45'))
+      expect(last_slot[0]).to eq(Time.zone.parse('17:30'))
     end
   end
 end
