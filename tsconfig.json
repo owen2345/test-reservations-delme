@@ -1,8 +1,10 @@
 {
   "compilerOptions": {
     "target": "ES6",
-    "jsxFactory": "jsxElem.createElement",
-    "jsxFragmentFactory": "jsxElem.Fragment",
-    "jsx": "preserve"
+    "jsxFactory": "React.createElement",
+    "jsxFragmentFactory": "React.Fragment",
+    "jsx": "preserve",
+    "lib": ["es6", "dom", "es2017"],
+    "moduleResolution": "node"
   }
 }
