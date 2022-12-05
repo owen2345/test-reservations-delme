@@ -40,7 +40,7 @@ class ReservedSlot < ApplicationRecord
   end
 
   def check_availability
-    taken = ReservedSlot.in_range(start_at + 1.minute, end_at).any?
+    taken = ReservedSlot.in_range(start_at + 1.minute, end_at - 1.minute).any?
     errors.add(:start_at, :busy, message: 'The slot range is already busy') if taken
   end
 

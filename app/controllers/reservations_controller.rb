@@ -13,7 +13,7 @@ class ReservationsController < ApplicationController
     @reservation = ReservedSlot.new(reservation_params)
     if @reservation.save
       flash[:notice] = 'Reservation successfully created'
-      redirect_to action: :index
+      turbo_request? ? redirect_to(action: :index) : render(inline: '')
     else
       flash[:error] = @reservation.errors.full_messages.join(', ')
       render_turbo_content { render inline: '' }
@@ -23,7 +23,11 @@ class ReservationsController < ApplicationController
   def free_slots
     @slots = SlotsGenerator.call(Date.parse(params[:date]), params[:duration].to_i)
     @reservation = ReservedSlot.new
-    render_turbo_content(skip_flash: true) { render }
+    if request.format == 'application/json'
+      render json: @slots
+    else
+      render_turbo_content(skip_flash: true) { render }
+    end
   end
 
   def destroy
